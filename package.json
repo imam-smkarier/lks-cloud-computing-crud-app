@@ -1,11 +1,16 @@
 {
-  "name": "crud-nodejs-app-gui",
+  "name": "lks-cloud-computing-crud-app",
   "version": "1.0.0",
-  "description": "Simple CRUD Node.js + MySQL app with EJS GUI for AWS deployment",
+  "description": "Aplikasi CRUD Node.js + MySQL (AWS RDS) untuk LKS Cloud Computing Kab. Bogor 2026 — PT SMKarier Inovasi Digital",
   "main": "app.js",
   "scripts": {
-    "start": "node app.js"
+    "start": "node app.js",
+    "dev": "node app.js",
+    "pm2": "pm2 start app.js --name lks-crud-app"
   },
+  "keywords": ["lks", "cloud-computing", "nodejs", "aws", "smkarier", "kabupaten-bogor"],
+  "author": "PT SMKarier Inovasi Digital <imam@smkarier.co.id>",
+  "license": "MIT",
   "dependencies": {
     "body-parser": "^1.20.2",
     "ejs": "^3.1.9",

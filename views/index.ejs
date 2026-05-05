@@ -1,17 +1,77 @@
 <!DOCTYPE html>
-<html>
-<head><title>Users</title></head>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LKS Cloud Computing — Kab. Bogor 2026</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Segoe UI', system-ui, sans-serif; background: #f8fafc; color: #1e293b; min-height: 100vh; }
+    .header { background: linear-gradient(135deg, #06453f 0%, #149a94 100%); color: white; padding: 24px 32px; }
+    .header h1 { font-size: 20px; font-weight: 700; }
+    .header p { font-size: 12px; opacity: 0.8; margin-top: 4px; }
+    .container { max-width: 800px; margin: 24px auto; padding: 0 16px; }
+    .card { background: white; border-radius: 8px; border: 1px solid #e2e8f0; padding: 24px; margin-bottom: 16px; }
+    .card h2 { font-size: 16px; color: #06453f; margin-bottom: 16px; padding-bottom: 8px; border-bottom: 2px solid #149a94; }
+    table { width: 100%; border-collapse: collapse; }
+    th, td { padding: 10px 12px; text-align: left; border-bottom: 1px solid #f1f5f9; font-size: 14px; }
+    th { background: #f8fafc; font-weight: 600; color: #475569; font-size: 12px; text-transform: uppercase; }
+    tr:hover { background: #f0fdfa; }
+    .btn { display: inline-block; padding: 8px 16px; border-radius: 6px; text-decoration: none; font-size: 13px; font-weight: 600; transition: all 0.2s; }
+    .btn-primary { background: #06453f; color: white; }
+    .btn-primary:hover { background: #149a94; }
+    .btn-edit { background: #f59e0b; color: white; font-size: 12px; padding: 5px 10px; }
+    .btn-delete { background: #ef4444; color: white; font-size: 12px; padding: 5px 10px; }
+    .actions { display: flex; gap: 6px; }
+    .empty { text-align: center; padding: 40px; color: #94a3b8; }
+    .badge { display: inline-block; background: #dff7ee; color: #06453f; padding: 3px 8px; border-radius: 4px; font-size: 11px; font-weight: 700; }
+    .footer { text-align: center; padding: 16px; color: #94a3b8; font-size: 11px; }
+  </style>
+</head>
 <body>
-  <h1>Daftar User</h1>
-  <a href="/add">+ Tambah User</a>
-  <ul>
-    <% users.forEach(user => { %>
-      <li>
-        <%= user.name %> - <%= user.email %>
-        [<a href="/edit/<%= user.id %>">Edit</a>]
-        [<a href="/delete/<%= user.id %>">Hapus</a>]
-      </li>
-    <% }) %>
-  </ul>
+  <div class="header">
+    <h1>📋 LKS Cloud Computing — Kabupaten Bogor 2026</h1>
+    <p>Aplikasi CRUD | Diselenggarakan oleh PT SMKarier Inovasi Digital</p>
+  </div>
+  <div class="container">
+    <div class="card">
+      <h2>Daftar Peserta <span class="badge"><%= users.length %> data</span></h2>
+      <a href="/add" class="btn btn-primary" style="margin-bottom: 16px;">+ Tambah Data</a>
+      <% if (users.length === 0) { %>
+        <div class="empty">
+          <p>Belum ada data. Klik tombol di atas untuk menambahkan.</p>
+        </div>
+      <% } else { %>
+        <table>
+          <thead>
+            <tr>
+              <th>No</th>
+              <th>Nama</th>
+              <th>Email</th>
+              <th>Aksi</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% users.forEach((user, i) => { %>
+              <tr>
+                <td><%= i + 1 %></td>
+                <td><strong><%= user.name %></strong></td>
+                <td><%= user.email %></td>
+                <td>
+                  <div class="actions">
+                    <a href="/edit/<%= user.id %>" class="btn btn-edit">Edit</a>
+                    <a href="/delete/<%= user.id %>" class="btn btn-delete" onclick="return confirm('Yakin hapus data ini?')">Hapus</a>
+                  </div>
+                </td>
+              </tr>
+            <% }) %>
+          </tbody>
+        </table>
+      <% } %>
+    </div>
+    <div class="footer">
+      © 2026 PT SMKarier Inovasi Digital — LKS Cloud Computing Kab. Bogor | smkarier.cloud
+    </div>
+  </div>
 </body>
 </html>
